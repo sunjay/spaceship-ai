@@ -16,12 +16,14 @@ __author__ = 'Sunjay'
 RAY_ANGLE_THRESHOLD = radians(1)  # radians
 # Objects at a distance less than or equal to this will
 # be avoided.
-AVOIDANCE_DISTANCE = 200
+AVOIDANCE_DISTANCE = 100
 # The maximum angle to be used to avoid an object
 AVOIDANCE_ANGLE = 30  # degrees
 # The maximum angle that the ship can turn in any given frame
 MAX_TURN_ANGLE = 1  # degrees
 
+# Debug ray tracing
+DEBUG_RAY = False
 
 class Spaceship(object):
 
@@ -33,7 +35,7 @@ class Spaceship(object):
 
 		self.rotation = 0  # degrees counterclockwise from north
 		self.position = [0, 0]
-		self.speed = 5
+		self.speed = 3
 
 		self._desired_angle = None
 
@@ -66,13 +68,13 @@ class Spaceship(object):
 		pos[1] -= ship_surface.get_height() / 2
 		screen.blit(ship_surface, pos)
 
-		#TODO: Remove this code
-		ray_angle = radians(self.rotation)
-		ray_x = AVOIDANCE_DISTANCE * sin(ray_angle)
-		ray_y = AVOIDANCE_DISTANCE * cos(ray_angle)
+		if DEBUG_RAY:
+			ray_angle = radians(self.rotation)
+			ray_x = AVOIDANCE_DISTANCE * sin(ray_angle)
+			ray_y = AVOIDANCE_DISTANCE * cos(ray_angle)
 
-		x, y = self.position
-		pygame.draw.line(screen, (255, 0, 0), (x, y), (x - ray_x, y - ray_y), 3)
+			x, y = self.position
+			pygame.draw.line(screen, (255, 0, 0), (x, y), (x - ray_x, y - ray_y), 3)
 
 	def get_scene_objects(self):
 		return self.scene.get_objects()
@@ -190,7 +192,6 @@ class Spaceship(object):
 			# Rotate by this much to avoid
 			angle = self.rotation + AVOIDANCE_ANGLE
 			self._desired_angle = angle
-			print "Desired", self._desired_angle
 
 		# Tween smoothly to the desired angle if any
 		if self._desired_angle is not None:
@@ -205,8 +206,6 @@ class Spaceship(object):
 				turn_sign = angle_delta / abs(angle_delta)
 				turn_angle = MAX_TURN_ANGLE * turn_sign
 				self.rotation += turn_angle
-
-			print "Current:", self.rotation
 
 		# Update position
 		rotation_angle = radians(self.rotation)

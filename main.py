@@ -26,7 +26,7 @@ def main():
 	ship.position = [WIDTH / 2, HEIGHT / 2]
 	scene.add_object(ship)
 
-	barrier = Circle(scene, 20)
+	barrier = Circle(scene, 5)
 	barrier.position = [WIDTH / 2, HEIGHT / 8]
 	scene.add_object(barrier)
 
