@@ -188,7 +188,7 @@ class Spaceship(object):
 			dist_left = AVOIDANCE_DISTANCE - dist
 
 			# Rotate by this much to avoid
-			angle = self.rotation + AVOIDANCE_ANGLE * (dist_left / float(AVOIDANCE_DISTANCE))
+			angle = self.rotation + AVOIDANCE_ANGLE
 			self._desired_angle = angle
 			print "Desired", self._desired_angle
 
