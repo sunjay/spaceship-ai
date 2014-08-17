@@ -26,9 +26,17 @@ def main():
 	ship.position = [WIDTH / 2, HEIGHT / 2]
 	scene.add_object(ship)
 
-	barrier = Circle(scene, 5)
-	barrier.position = [WIDTH / 2, HEIGHT / 8]
-	scene.add_object(barrier)
+	BARRIERS_X = 5
+	BARRIERS_Y = 5
+	for i in xrange(BARRIERS_Y):
+		y = int(HEIGHT / BARRIERS_Y * (i + 0.5))
+		left_offset = ((i % 2) == 0) * 50
+		for j in xrange(BARRIERS_X):
+			barrier = Circle(scene, 5)
+
+			x = int(WIDTH / BARRIERS_X * (j + 0.5) + left_offset)
+			barrier.position = [x, y]
+			scene.add_object(barrier)
 
 	clock = pygame.time.Clock()
 
