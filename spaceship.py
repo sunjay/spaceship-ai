@@ -16,7 +16,7 @@ __author__ = 'Sunjay'
 RAY_ANGLE_THRESHOLD = radians(1)  # radians
 # Objects at a distance less than or equal to this will
 # be avoided.
-AVOIDANCE_DISTANCE = 100
+AVOIDANCE_DISTANCE = 150
 # The maximum angle to be used to avoid an object
 AVOIDANCE_ANGLE = 30  # degrees
 # The maximum angle that the ship can turn in any given frame
@@ -24,6 +24,7 @@ MAX_TURN_ANGLE = 1  # degrees
 
 # Debug ray tracing
 DEBUG_RAY = False
+
 
 class Spaceship(object):
 
@@ -131,7 +132,7 @@ class Spaceship(object):
 			# relative to self
 			delta_x = obj_x - x
 			delta_y = y - obj_y
-			angle = pi/2 - atan2(delta_y, delta_x)
+			angle = atan2(delta_y, delta_x) - pi/2
 
 			# If the angle is acceptably in front of self
 			if abs(angle - ray_angle) >= RAY_ANGLE_THRESHOLD:

@@ -23,8 +23,14 @@ def main():
 	scene = Scene(BACKGROUND)
 
 	ship = Spaceship(scene)
-	ship.position = [WIDTH / 2, HEIGHT / 2]
+	ship.position = [WIDTH / 4, HEIGHT / 2 - 30]
+	ship.rotation = -90
 	scene.add_object(ship)
+
+	ship2 = Spaceship(scene, color=(255, 10, 10))
+	ship2.position = [WIDTH - WIDTH / 4, HEIGHT / 2 - 30]
+	ship2.rotation = 90
+	scene.add_object(ship2)
 
 	BARRIERS_X = 5
 	BARRIERS_Y = 5
