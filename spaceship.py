@@ -28,7 +28,7 @@ DEBUG_RAY = False
 
 class Spaceship(object):
 
-	def __init__(self, scene, width=40, height=60, color=(0, 128, 255)):
+	def __init__(self, scene, width=20, height=30, color=(0, 128, 255)):
 		self.scene = scene
 		self.color = color
 		self.width = width

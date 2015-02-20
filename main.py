@@ -32,8 +32,8 @@ def main():
 	ship2.rotation = 90
 	scene.add_object(ship2)
 
-	BARRIERS_X = 5
-	BARRIERS_Y = 5
+	BARRIERS_X = 10
+	BARRIERS_Y = 10
 	for i in xrange(BARRIERS_Y):
 		y = int(HEIGHT / BARRIERS_Y * (i + 0.5))
 		left_offset = ((i % 2) == 0) * 50
