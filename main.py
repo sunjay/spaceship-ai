@@ -33,7 +33,7 @@ def main():
 	scene.add_object(ship2)
 
 	BARRIERS_X = 10
-	BARRIERS_Y = 10
+	BARRIERS_Y = 9
 	for i in xrange(BARRIERS_Y):
 		y = int(HEIGHT / BARRIERS_Y * (i + 0.5))
 		left_offset = ((i % 2) == 0) * 50
