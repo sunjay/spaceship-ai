@@ -23,7 +23,7 @@ AVOIDANCE_ANGLE = 30  # degrees
 MAX_TURN_ANGLE = 1  # degrees
 
 # Debug ray tracing
-DEBUG_RAY = False
+DEBUG_RAY = True
 
 
 class Spaceship(object):
@@ -70,12 +70,21 @@ class Spaceship(object):
 		screen.blit(ship_surface, pos)
 
 		if DEBUG_RAY:
+                        # draw ray
 			ray_angle = radians(self.rotation)
 			ray_x = AVOIDANCE_DISTANCE * sin(ray_angle)
 			ray_y = AVOIDANCE_DISTANCE * cos(ray_angle)
 
 			x, y = self.position
 			pygame.draw.line(screen, (255, 0, 0), (x, y), (x - ray_x, y - ray_y), 3)
+
+			# draw desired angle
+			if self._desired_angle is not None:
+                                desired_angle = radians(self._desired_angle)
+                                desired_x = screen.get_width() * sin(desired_angle)
+                                desired_y = screen.get_height() * cos(desired_angle)
+
+                                pygame.draw.line(screen, (0, 0, 255), (x, y), (x - desired_x, y - desired_y), 3)
 
 	def get_scene_objects(self):
 		return self.scene.get_objects()
